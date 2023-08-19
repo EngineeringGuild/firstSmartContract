@@ -1,0 +1,62 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18; // Solidity verions
+
+// EVM, Ethereum Virtual machine
+// Ethereum, Polygon, Arbitrum, Optimism, Zksync
+
+
+/* contract SimpleStorage {
+    // Basic Types: boolean ( truht or false) , unit (unit256), int( + or _ ), address, bytes
+    bool hasFavoriteNumber = true;
+    uint256 favoriteNumer = 88;
+    string favoriteNumerInText = "eighty-eighty";
+    int256 favoriteInt = -88;
+    address myAddress = 0xe890a1e812ed2E0B7B494463aD6C8e6CFDf5Cf9C;
+    bytes32 favoriteBytes32 = "cat";
+
+}*/
+
+contract SimpleStorage {
+
+    uint256 myFavoriteNumber; //favoriteNumber = 0 / unit = internal/public/private/external
+
+   // uint256[] listFavoriteNumber; 
+    struct Person {
+        uint256 favoriteNumber;
+        string name;
+    }
+    // dynamic array
+   Person[] public listOfPeople;
+    
+    //dicionario com Nome e Numero
+   mapping(string => uint256) public nameToFavoriteNumber;
+   
+    //Person public  myFriend = Person(7,"Pat");
+    // Person public  pat = Person({favoriteNumber: 7, name: "Pat"});
+    // Person public  mariah = Person({favoriteNumber: 16, name: "Mariah"});
+    // Person public  jon = Person({favoriteNumber: 12, name: "Jon"});
+
+
+    function store(uint256 _favoriteNumber) public virtual  {
+        myFavoriteNumber = _favoriteNumber;
+        //favoriteNumber = favoriteNumber + 1; more gas / line
+    }
+
+    //view,pure
+    function retrieve() public view returns(uint256){  
+        return myFavoriteNumber;
+    }
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        
+        // Person memory newPerson = Person(_favoriteNumber, _name);
+        // listOfPeople.push(newPerson);
+        
+        listOfPeople.push( Person(_favoriteNumber, _name) );
+
+        //
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+
+}
+ contract SimpleStorage2 {}
+ contract SimpleStorage3 {}
